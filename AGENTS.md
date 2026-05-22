@@ -102,6 +102,8 @@ AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluat
 | `interview-prep/{company}-{role}.md` | Company-specific interview intel |
 | `generate-pdf.mjs` | Playwright: HTML to PDF |
 | `generate-latex.mjs` | LaTeX CV validator + pdflatex compiler |
+| `generate-typst-pdf.mjs` | Typst CV compiler: cv.md → Typst → PDF (requires `typst` on PATH) |
+| `templates/template.typ` | Typst resume template (icons, fonts, single-column ATS layout) |
 | `scan.mjs` | Zero-token portal scanner (Greenhouse/Ashby/Lever APIs, zero LLM cost) |
 | `scan-ats-full.mjs` | Reverse-ATS keyword-first scanner over full public ATS datasets (Greenhouse/Lever/Ashby/Workday/iCIMS), filtered by portals.yml `title_filter`/`location_filter` — no company list needed; checkpoints every 500 companies, `--resume` continues an interrupted sweep |
 | `scan-interamt.mjs` | Playwright browser scanner for Interamt.de (German public sector portal — Apache Wicket, no REST API) |
@@ -304,6 +306,7 @@ Two separate axes:
 | Wants a cover letter | `cover` |
 | Wants to add a role to the tracker manually | `add` |
 | Wants to discover CV competencies they forgot to write down | `expand` |
+| Wants Typst PDF (typeset) | `typst` |
 | Evaluates a course/cert | `training` |
 | Evaluates portfolio project | `project` |
 | Asks about application status | `tracker` |
