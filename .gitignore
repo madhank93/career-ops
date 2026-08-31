@@ -156,3 +156,6 @@ documents/*
 # Intake fingerprints — the recorded source filenames may themselves carry
 # PII (e.g. cv/jane-doe-master-cv.pdf). #1723
 data/intake-state.json
+# aider (local-model offload) working files — chat history and input logs
+# echo prompts and file contents, same PII risk class as documents/.
+.aider*
