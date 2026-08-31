@@ -15,8 +15,13 @@ import { existsSync, statSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { spawnSync } from 'child_process';
+import { getCareerOpsRoot } from './path-resolver.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+// User-layer reads and writes (cv.md, output/) follow the data root, which
+// CAREER_OPS_ROOT may point outside the checkout. Template, fonts and the
+// temp .typ stay next to the code.
+const DATA_ROOT = getCareerOpsRoot();
 
 // ---------------------------------------------------------------------------
 // Convert markdown bold (**text**) to Typst bold (*text*)
@@ -285,18 +290,18 @@ async function main() {
   }
   format = formatMap[format] || format;
 
-  const cvPath = resolve(__dirname, 'cv.md');
+  const cvPath = resolve(DATA_ROOT, 'cv.md');
   if (!existsSync(cvPath)) {
     console.error('❌ cv.md not found at', cvPath);
     process.exit(1);
   }
 
-  const outDir = resolve(__dirname, 'output');
+  const outDir = resolve(DATA_ROOT, 'output');
   await mkdir(outDir, { recursive: true });
 
   // Resolve relative custom paths early; defer auto-naming until after parse
   if (outputPath && !outputPath.startsWith('/')) {
-    outputPath = resolve(__dirname, outputPath);
+    outputPath = resolve(DATA_ROOT, outputPath);
   }
 
   console.log('📖 Reading cv.md...');
