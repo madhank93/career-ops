@@ -159,3 +159,7 @@ data/intake-state.json
 # aider (local-model offload) working files — chat history and input logs
 # echo prompts and file contents, same PII risk class as documents/.
 .aider*
+
+# Fork-local pipeline pre-filter — encodes personal targeting (see
+# config/local-paths.txt), so it stays out of the public fork.
+prefilter-pipeline.mjs
